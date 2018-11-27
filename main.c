@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 	int option; //user input option
 	void *list, *mvInfo; //pointers for linked list and a specific structure instance for a movie data
 	int (*repFunc)(void* obj, void* arg); //function pointer for using list_repeatFunc() function
-	void* arg; //a void pointer for passing argument to repFunc
+	void *arg; //a void pointer for passing argument to repFunc
 	int cnt; //integer variable
 	
 	
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 	fp=fopen("movie.txt","r");//1.1 FILE open
 	if(fp==NULL)
 	{
-		printf("\nv열수 없습니다.\n");
+		printf("\n열수 없습니다.\n");
 		exit(1);
 	}
     
@@ -35,10 +35,10 @@ int main(int argc, char *argv[]) {
 	
 	//1.3 read each movie data from the file and add it to the linked list
 	while ( fgetc(fp)!=EOF/* read name, country, runtime and score*/ )
-	{	
-		cnt++;
+	{
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
+		cnt++;
 	}
 
 	fclose(fp);//1.4 FILE close
@@ -67,22 +67,16 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 2: //print movies of specific country
-				printf("select a country :");
-				scanf("%c",country);
 				repFunc = mv_printCountry;
 				arg = NULL;
 				break;
 				
 			case 3: //print movies with long runtime
-				printf("lowest runtime :");
-				scanf("%d",runTime);
 				repFunc = mv_printRunTime;
 				arg = NULL;
 				break;
 				
 			case 4: //print movies with high score
-				printf("lowest score :");
-				scanf("%d",score);
 				repFunc = mv_printScore;
 				arg = NULL;
 				break;
