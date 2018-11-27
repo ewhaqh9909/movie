@@ -13,7 +13,7 @@ typedef struct movInfo {
 
 void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 {
-	movInfo_t* mvPtr;
+	 movInfo_t* mvPtr;
 	
 	//allocate memory and set the member variables
 	

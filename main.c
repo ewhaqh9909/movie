@@ -18,9 +18,10 @@ int main(int argc, char *argv[]) {
 	int option; //user input option
 	void *list, *mvInfo; //pointers for linked list and a specific structure instance for a movie data
 	int (*repFunc)(void* obj, void* arg); //function pointer for using list_repeatFunc() function
-	void *arg; //a void pointer for passing argument to repFunc
+	void* arg; //a void pointer for passing argument to repFunc
 	int cnt; //integer variable
-	cnt=0;
+	
+	
 	printf("Reading the data files...");//1. reading the movie.dat-----------------------------
 	fp=fopen("movie.txt","r");//1.1 FILE open
 	if(fp==NULL)
