@@ -36,6 +36,8 @@ int main(int argc, char *argv[]) {
 	//1.3 read each movie data from the file and add it to the linked list
 	while ( fgetc(fp)!=EOF/* read name, country, runtime and score*/ )
 	{
+		struct movInfo *mvInfo;
+		mv_genMvInfo(name, score, runTime,country);
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 		cnt++;
