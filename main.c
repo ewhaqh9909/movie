@@ -23,7 +23,8 @@ int main(int argc, char *argv[]) {
 	
 	
 	printf("Reading the data files...");//1. reading the movie.dat-----------------------------
-	fp=fopen("movie.txt","r");//1.1 FILE open
+	
+	fp=fopen("movie.dat","r");//1.1 FILE open
 	if(fp==NULL)
 	{
 		printf("\n열수 없습니다.\n");
