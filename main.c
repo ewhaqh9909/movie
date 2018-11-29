@@ -20,9 +20,8 @@ int main(int argc, char *argv[]) {
 	int (*repFunc)(void* obj, void* arg); //function pointer for using list_repeatFunc() function
 	void *arg; //a void pointer for passing argument to repFunc
 	int cnt; //integer variable
-	
-	
-	printf("Reading the data files...");//1. reading the movie.dat-----------------------------
+	cnt=0;
+	printf("Reading the data files...\n\n");//1. reading the movie.dat-----------------------------
 	
 	fp=fopen("movie.dat","r");//1.1 FILE open
 	if(fp==NULL)
@@ -47,6 +46,7 @@ int main(int argc, char *argv[]) {
 	fclose(fp);//1.4 FILE close
 	printf("    -totally %d movies are listed!\n",cnt);
 	//2. program start
+	
 	while(exit_flag == 0)
 	{
 		printf("\n\n--------------------Menu--------------------\n");
@@ -55,14 +55,15 @@ int main(int argc, char *argv[]) {
 		printf("3. search for specific runtime movies\n");
 		printf("4. search for specific score movies\n");
 		printf("5. exit");
-		printf("--------------------Menu--------------------\n\n");
+		printf("\n--------------------Menu--------------------\n\n");
 		printf("-- select an option :");
-		scanf("%d",option);
+		scanf("%d", &option);
 		//2.1 print menu message and get input option
+	
 		switch(option)
 		{
 			case 1: //print all the movies
-				printf("\nprinting all the movies in the list.....\n\n\n");
+				printf("\nprinting all the movies in the list.....\n");
 				printf("----------------------------------------\n");
 				
 				repFunc = mv_printAll;
