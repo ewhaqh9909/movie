@@ -259,85 +259,20 @@ void* list_getNextNd(void* nd)
 	return (void*)travelList(ndPtr, 1);
 }
 
-/*
-	description : get the node with specific index
-	input parameters : index - the index of the node that we would like to get
-	                   list - the linked list that we search from
-	return value : the node whose index is the same as the input index
-	
-	operation : 1. go through the list
-	            2. if there is the node whose index is the same, then return it
-*/
-void* list_getIndexNd(int index, void* list)
-{
-	node_t* listPtr = (node_t*)list;
-	
-	if (listPtr == NULL)
-	{
-		printf("[ERROR] Failed to get the node with index : list pointer is NULL! (%u)\n", listPtr);
-		return NULL;
-	}
-	
-	while (list_isEndNode(listPtr) == 0 )//travel until it is the end node
-	{
-		listPtr = listPtr->next;
-		if (listPtr->index == index)
-		{
-			return listPtr;
-		}
-	}
-	
-	printf("[ERROR] Failed to get the node with index : cannot find the node for index %i in this list!\n", index);
-	return NULL;
-}
-
-
-/*
-	description : get the node with specific index
-	input parameters : index - the index of the node that we would like to get
-	                   list - the linked list that we search from
-	return value : the node whose index is the same as the input index
-	
-	operation : 1. go through the list
-	            2. if there is the node whose index is the same, then return it
-*/
-void* list_srchNd(int (*matchFunc)(void* obj, void* cond), void* cond, void* list)
-{
-	node_t* listPtr = (node_t*)list;
-	
-	if (listPtr == NULL)
-	{
-		printf("[ERROR] search node fail : list pointer is NULL! (%u)\n", listPtr);
-		return NULL;
-	}
-	
-	while (list_isEndNode(listPtr) == 0 ) //travel until it is the end node
-	{
-		listPtr = listPtr->next;
-		if (matchFunc(listPtr->obj, cond) == 1)
-		{
-			return listPtr;
-		}
-	}
-	
-	printf("[ERROR] search node fail : no matched node!\n");
-	return NULL;
-}
-
-
 //functions for list object handling -----------------------------
 
 
 /*
 	description : repeat processing a function for each node
 	input parameters : func - the function that will be repeated for each node (the parameter void* obj is equal to the node->obj)
+	                   arg - argument for the repeat function
 	                   list - the linked list that we would like to process
 	return value : the number of nodes that are processed
 	
 	operation : 1. until the node pointer reaches to the last one
 	            2. go to the next node and call func() with argument node->obj
 */
-int list_repeatFunc(void (*func)(void* obj), void* list)
+int list_repeatFunc(int (*func)(void* obj, void* arg), void* arg, void* list)
 {
 	node_t* listPtr = (node_t*)list;
 	int len=0;
@@ -352,8 +287,7 @@ int list_repeatFunc(void (*func)(void* obj), void* list)
 	while ( list_isEndNode(listPtr) == 0 )//travel until it is the end node
 	{
 		listPtr = listPtr->next; //travel once
-		func(listPtr->obj);
-		len++;//increase the length variable
+		len += func(listPtr->obj, arg); //increase the length variable
 	}
 	
 	return len;
@@ -381,5 +315,4 @@ void* list_getNdObj(void* nd)
 	
 	return (void*)ndPtr->obj;
 }
-
 
