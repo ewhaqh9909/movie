@@ -16,7 +16,6 @@ void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 	 movInfo_t* mvPtr;
 	
 	//allocate memory and set the member variables
-	
 	return (void*)mvPtr;
 }
 
@@ -36,7 +35,7 @@ void printMv(void* obj)
 
 int mv_printAll(void* obj, void* arg)
 {
-	printMv(obj);
+	printMv;
 }
 
 int mv_printScore(void* obj, void* arg)
@@ -51,7 +50,7 @@ int mv_printScore(void* obj, void* arg)
 	if(score<= mvPtr->score)
 	{
 		i++;
-		printMv(obj);
+		printMv;
 	}
 	printf("   - totally %d movies are listed!",i);
 }
@@ -65,7 +64,7 @@ int mv_printRunTime(void* obj, void* arg)
 	if(runTime<=mvPtr->runTime)
 	{
 		i++;
-		printMv(obj);
+		printMv;
 	}
 	printf("   - totally %d movies are listed!",i);
 }
@@ -78,10 +77,10 @@ int mv_printCountry(void* obj, void* arg)
 	scanf("%c",country);
 	movInfo_t* mvPtr;
 	
-	if(country == (mvPtr->madeIn))
+	if(country == (*mvPtr->madeIn))
 	{
 		i++;
-		printMv(obj);
+		printMv;
 		
 	}
 	printf("   - totally %d movies are listed!",i);

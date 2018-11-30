@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 	int (*repFunc)(void* obj, void* arg); //function pointer for using list_repeatFunc() function
 	void *arg; //a void pointer for passing argument to repFunc
 	int cnt; //integer variable
-	cnt=0;
+
 	printf("Reading the data files...\n\n");//1. reading the movie.dat-----------------------------
 	
 	fp=fopen("movie.dat","r");//1.1 FILE open
@@ -32,19 +32,19 @@ int main(int argc, char *argv[]) {
     
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
-	
+	list_len(list);
 	//1.3 read each movie data from the file and add it to the linked list
-	while ( fgetc(fp)!=EOF/* read name, country, runtime and score*/ )
+	
+	while (fgetc(fp)!=EOF/* read name, country, runtime and score*/ )
 	{
-		struct movInfo *mvInfo;
 		mv_genMvInfo(name, score, runTime,country);
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
-		cnt++;
-	}
 
+	}
+	
 	fclose(fp);//1.4 FILE close
-	printf("    -totally %d movies are listed!\n",cnt);
+	printf("    -totally %d movies are listed!\n",list_len(list));
 	//2. program start
 	
 	while(exit_flag == 0)
@@ -65,12 +65,13 @@ int main(int argc, char *argv[]) {
 			case 1: //print all the movies
 				printf("\nprinting all the movies in the list.....\n");
 				printf("----------------------------------------\n");
-				
+				list_repeatFunc(repFunc,arg,list);
 				repFunc = mv_printAll;
 				arg = NULL;
 				break;
 				
 			case 2: //print movies of specific country
+				list_repeatFunc(repFunc,&country,list);
 				repFunc = mv_printCountry;
 				arg = NULL;
 				break;
@@ -81,6 +82,7 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 4: //print movies with high score
+				list_repeatFunc(repFunc,&score,list);
 				repFunc = mv_printScore;
 				arg = NULL;
 				break;
