@@ -3,9 +3,7 @@
 #include <string.h>
 #include "movie.h"
 #include "linked_List.h"
-
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
 int main(int argc, char *argv[]) {
 	
 	FILE *fp; //FILE pointer for reading movie data 
@@ -32,12 +30,12 @@ int main(int argc, char *argv[]) {
     
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
-	list_len(list);
+
 	//1.3 read each movie data from the file and add it to the linked list
 	
 	while (fgetc(fp)!=EOF/* read name, country, runtime and score*/ )
-	{
-		mv_genMvInfo(name, score, runTime,country);
+	{	list_len(list);
+		mv_genMvInfo(name, score, runTime, country);
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 
@@ -65,13 +63,13 @@ int main(int argc, char *argv[]) {
 			case 1: //print all the movies
 				printf("\nprinting all the movies in the list.....\n");
 				printf("----------------------------------------\n");
-				list_repeatFunc(repFunc,arg,list);
+				list_repeatFunc(repFunc(mv_genMvInfo,&mvInfo),&mvInfo,mv_printAll);	
 				repFunc = mv_printAll;
 				arg = NULL;
 				break;
 				
 			case 2: //print movies of specific country
-				list_repeatFunc(repFunc,&country,list);
+				list_repeatFunc;
 				repFunc = mv_printCountry;
 				arg = NULL;
 				break;
