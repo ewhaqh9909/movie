@@ -99,7 +99,6 @@ int main(int argc, char *argv[]) {
 			case 5:
 				printf("\n\nBye!\n\n");
 				exit_flag = 1;
-				
 				break;
 				
 			default:

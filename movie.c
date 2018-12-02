@@ -49,8 +49,8 @@ int mv_printAll(void* obj, void* arg)
 
 int mv_printScore(void* obj, void* arg)
 {
-	movInfo_t* mvPtr;
-	if(strcmp(arg,mvPtr->score)==0)
+movInfo_t* mvPtr = (movInfo_t*)obj;
+	if ( mvPtr->score >= *(float*)arg) 
 	{
 		printMv(obj);
 	}
@@ -61,7 +61,7 @@ int mv_printScore(void* obj, void* arg)
 int mv_printRunTime(void* obj, void* arg)
 {
 	movInfo_t* mvPtr = (movInfo_t*)obj;
-	if(strcmp(arg,mvPtr->runTime)==0)
+	if ( mvPtr->runTime >= arg) 
 	{
 		printMv(obj);
 	}
