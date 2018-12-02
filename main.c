@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 	fclose(fp);//1.4 FILE close
 	printf("    -totally %d movies are listed!\n",list_len(list));
 	//2. program start
-	
+	list_addTail(mvInfo, list);
 	while(exit_flag == 0)
 	{
 		printf("\n\n--------------------Menu--------------------\n");

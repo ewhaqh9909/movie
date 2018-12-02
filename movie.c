@@ -14,7 +14,6 @@ typedef struct movInfo {
 void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 {
 	 movInfo_t* mvPtr;
-	
 	//allocate memory and set the member variables
 	return (void*)mvPtr;
 }
@@ -44,9 +43,7 @@ int mv_printScore(void* obj, void* arg)
 	int i=0;
 	printf("lowest score :");
 	scanf("%d",&score);
-	
 	movInfo_t* mvPtr;
-	
 	if(score<= mvPtr->score)
 	{
 		i++;
@@ -59,7 +56,7 @@ int mv_printRunTime(void* obj, void* arg)
 {
 	int runTime,i=0;
 	printf("lowest runtime :");
-	scanf("%d",&runTime);
+	scanf("%f",&runTime);
 	movInfo_t* mvPtr;
 	if(runTime<=mvPtr->runTime)
 	{
@@ -72,12 +69,11 @@ int mv_printRunTime(void* obj, void* arg)
 int mv_printCountry(void* obj, void* arg)
 {	
 	movInfo_t* mvPtr;
-	char country;
+	char country[10];
 	int i=0;
 	printf("select a country :");
-	scanf("%c",country);
-
-	if(country == (mvPtr->madeIn))
+	scanf("%s",country);
+	if(&country == (mvPtr->madeIn))
 	{
 		printMv(&obj);
 		i++;
