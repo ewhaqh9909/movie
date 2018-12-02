@@ -13,9 +13,18 @@ typedef struct movInfo {
 
 void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 {
-	 movInfo_t* mvPtr;
+	movInfo_t* mvPtr;
 	//allocate memory and set the member variables
-	return (void*)mvPtr;
+	mvPtr = (movInfo_t*)malloc(sizeof(movInfo_t));
+	if (mvPtr != NULL)
+	{
+		strcpy(mvPtr->name,name);
+		mvPtr->score=score;
+		mvPtr->runTime=runTime;
+		strcpy(mvPtr->madeIn,country);
+	}
+	
+	return (void*)mvPtr;	
 }
 
 void printMv(void* obj)
@@ -34,7 +43,8 @@ void printMv(void* obj)
 int mv_printAll(void* obj, void* arg)
 {
 	printf("----------------------------------------\n");
-	printMv(&obj);
+	printMv(obj);
+	return;
 }
 
 int mv_printScore(void* obj, void* arg)
@@ -50,20 +60,23 @@ int mv_printScore(void* obj, void* arg)
 		printMv(obj);
 	}
 	printf("   - totally %d movies are listed!",i);
+	return;
 }
 
 int mv_printRunTime(void* obj, void* arg)
 {
 	int runTime,i=0;
 	printf("lowest runtime :");
-	scanf("%f",&runTime);
+	scanf("%d",&runTime);
 	movInfo_t* mvPtr;
-	if(runTime<=mvPtr->runTime)
+	if(runTime<=(mvPtr->runTime))
 	{
 		i++;
-		printMv;
+		printMv(obj);
 	}
 	printf("   - totally %d movies are listed!",i);
+	
+	return;
 }
 
 int mv_printCountry(void* obj, void* arg)
@@ -75,10 +88,11 @@ int mv_printCountry(void* obj, void* arg)
 	scanf("%s",country);
 	if(&country == (mvPtr->madeIn))
 	{
-		printMv(&obj);
+		printMv(obj);
 		i++;
 	}
 	printf("   - totally %d movies are listed!",i);
+	return 0;
 }
 
 

@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 	fclose(fp);//1.4 FILE close
 	printf("    -totally %d movies are listed!\n",list_len(list));
 	//2. program start
-	list_addTail(mvInfo, list);
+	
 	while(exit_flag == 0)
 	{
 		printf("\n\n--------------------Menu--------------------\n");
@@ -79,12 +79,13 @@ int main(int argc, char *argv[]) {
 			case 3: //print movies with long runtime
 				repFunc = mv_printRunTime;
 				arg = NULL;
+				list_repeatFunc(repFunc,arg,list);
 				break;
 				
 			case 4: //print movies with high score
-				list_repeatFunc(repFunc,&score,list);
 				repFunc = mv_printScore;
 				arg = NULL;
+				list_repeatFunc(repFunc,arg,list);
 				break;
 				
 			case 5:
