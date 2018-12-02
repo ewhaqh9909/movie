@@ -26,7 +26,6 @@ void printMv(void* obj)
 	{
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
 	}
-	
 	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 	printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
 	
@@ -35,7 +34,8 @@ void printMv(void* obj)
 
 int mv_printAll(void* obj, void* arg)
 {
-	printMv(obj);
+	printf("----------------------------------------\n");
+	printMv(&obj);
 }
 
 int mv_printScore(void* obj, void* arg)
@@ -43,7 +43,7 @@ int mv_printScore(void* obj, void* arg)
 	float score;
 	int i=0;
 	printf("lowest score :");
-	scanf("%d",score);
+	scanf("%d",&score);
 	
 	movInfo_t* mvPtr;
 	
@@ -59,7 +59,7 @@ int mv_printRunTime(void* obj, void* arg)
 {
 	int runTime,i=0;
 	printf("lowest runtime :");
-	scanf("%d",runTime);
+	scanf("%d",&runTime);
 	movInfo_t* mvPtr;
 	if(runTime<=mvPtr->runTime)
 	{
@@ -71,17 +71,16 @@ int mv_printRunTime(void* obj, void* arg)
 
 int mv_printCountry(void* obj, void* arg)
 {	
+	movInfo_t* mvPtr;
 	char country;
 	int i=0;
 	printf("select a country :");
 	scanf("%c",country);
-	movInfo_t* mvPtr;
-	
-	if(country == (*mvPtr->madeIn))
+
+	if(country == (mvPtr->madeIn))
 	{
+		printMv(&obj);
 		i++;
-		printMv;
-		
 	}
 	printf("   - totally %d movies are listed!",i);
 }
