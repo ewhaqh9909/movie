@@ -50,7 +50,7 @@ int mv_printScore(void* obj, void* arg)
 	if(score<= mvPtr->score)
 	{
 		i++;
-		printMv;
+		printMv(obj);
 	}
 	printf("   - totally %d movies are listed!",i);
 }

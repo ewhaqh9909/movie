@@ -35,11 +35,11 @@ int main(int argc, char *argv[]) {
 	
 	while (!feof(fp)/* read name, country, runtime and score*/ )
 	{
-		fscanf(fp,"%s %lf %d %s",&name,&score,&runTime,&country);
+		fscanf(fp,"%s %s %d %f",name,country,&runTime,&score);
 		mvInfo=mv_genMvInfo(name, score, runTime, country);
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
-        printf("%s",fp);
+        printf("%s %s %d %f\n",name,country,runTime,score);
         
 	}
 
