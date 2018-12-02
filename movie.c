@@ -52,9 +52,9 @@ int mv_printScore(void* obj, void* arg)
 	float score;
 	int i=0;
 	printf("lowest score :");
-	scanf("%d",&score);
+	scanf("%f",&score);
 	movInfo_t* mvPtr;
-	if(score<= mvPtr->score)
+	if(score<=mvPtr->score)
 	{
 		i++;
 		printMv(obj);
@@ -81,18 +81,16 @@ int mv_printRunTime(void* obj, void* arg)
 
 int mv_printCountry(void* obj, void* arg)
 {	
-	movInfo_t* mvPtr;
-	char country[10];
+	movInfo_t* mvPtr = (movInfo_t*)obj;
 	int i=0;
-	printf("select a country :");
-	scanf("%s",country);
-	if(&country == (mvPtr->madeIn))
+	while(strcmp(arg,mvPtr->madeIn)==0)
 	{
-		printMv(obj);
 		i++;
+		printMv(obj);
+		break;
 	}
-	printf("   - totally %d movies are listed!",i);
-	return 0;
+
+	return ;
 }
 
 
