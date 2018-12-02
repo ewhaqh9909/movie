@@ -35,8 +35,7 @@ void printMv(void* obj)
 
 int mv_printAll(void* obj, void* arg)
 {
-	void *list, *mvInfo;
-	printMv(&mvInfo);
+	printMv(obj);
 }
 
 int mv_printScore(void* obj, void* arg)

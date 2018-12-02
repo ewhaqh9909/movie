@@ -33,14 +33,16 @@ int main(int argc, char *argv[]) {
 
 	//1.3 read each movie data from the file and add it to the linked list
 	
-	while (fgetc(fp)!=EOF/* read name, country, runtime and score*/ )
-	{	list_len(list);
-		mv_genMvInfo(name, score, runTime, country);
+	while (!feof(fp)/* read name, country, runtime and score*/ )
+	{
+		fscanf(fp,"%s %lf %d %s",&name,&score,&runTime,&country);
+		mvInfo=mv_genMvInfo(name, score, runTime, country);
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
-
+        printf("%s",fp);
+        
 	}
-	
+
 	fclose(fp);//1.4 FILE close
 	printf("    -totally %d movies are listed!\n",list_len(list));
 	//2. program start
@@ -63,15 +65,15 @@ int main(int argc, char *argv[]) {
 			case 1: //print all the movies
 				printf("\nprinting all the movies in the list.....\n");
 				printf("----------------------------------------\n");
-				list_repeatFunc(repFunc(mv_genMvInfo,&mvInfo),&mvInfo,mv_printAll);	
 				repFunc = mv_printAll;
 				arg = NULL;
+				list_repeatFunc(repFunc,arg,list);	
 				break;
 				
 			case 2: //print movies of specific country
-				list_repeatFunc;
 				repFunc = mv_printCountry;
 				arg = NULL;
+				list_repeatFunc(repFunc,arg,list);	
 				break;
 				
 			case 3: //print movies with long runtime
