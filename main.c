@@ -71,23 +71,28 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 2: //print movies of specific country
-				repFunc = mv_printCountry;
 				printf("select a country :");
 	            scanf("%s", country);
 				arg = &country;
+				cnt++;
+				repFunc = mv_printCountry;
 				list_repeatFunc(repFunc,arg,list);	
 				printf("   - totally %d movies are listed!\n",cnt);
 				break;
 				
 			case 3: //print movies with long runtime
 				repFunc = mv_printRunTime;
-				arg = NULL;
+				printf("lowest runtime :");
+				scanf("%d", &runTime);
+				arg = runTime;
 				list_repeatFunc(repFunc,arg,list);
 				break;
 				
 			case 4: //print movies with high score
 				repFunc = mv_printScore;
-				arg = NULL;
+				printf("lowest score :");
+				scanf("%f",&score);
+				arg = &score;
 				list_repeatFunc(repFunc,arg,list);
 				break;
 				
