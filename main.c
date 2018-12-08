@@ -67,7 +67,10 @@ int main(int argc, char *argv[]) {
 				printf("----------------------------------------\n");
 				repFunc = mv_printAll;//mv_printALL함수를 repFunc처럼 각 노드마다 반복하기 위해 repFunc로 저장... 
 				arg = NULL;//repFunc의 인수로 쓰이는 arg를 NULL로 두어 별 다른 조건없이 영화전부를 전부 출력하기위한 설정이다  
-				list_repeatFunc(repFunc,arg,list);//노드의 끝까지인 영화정보전체를 다 돌때까지 반복한다  
+				printf("   - totally %d movies are listed!\n",list_repeatFunc(repFunc,arg,list));
+				/*list_repeatFunc()을 이용하여 repFunc는 결국 mv_print~~함수인데
+				이 함수를 while문 속에서 각 노드의 끝까지 보내서 조건에 따라 출력하게 되는  
+				이때 각 조건이 맞을때 반환값들을  더하게 된다 그럼 결국 출력한 영화의 개수를 셀 수 있다.*/ 
 				break;
 				
 			case 2: //print movies of specific country
@@ -75,32 +78,34 @@ int main(int argc, char *argv[]) {
 	            scanf("%s", country);//영화 국가를 입력한다  
 	            arg = &country;//arg를 country로 두어서 repFunc인 mv_printcountry함수에서 활용하게 된다  
 				repFunc = mv_printCountry;//repFunc인 mv_printcountry함수
+				printf("   - totally %d movies are listed!\n",list_repeatFunc(repFunc,arg,list));
 				break;
 				
 			case 3: //print movies with long runtime
-				repFunc = mv_printRunTime;
 				printf("lowest runtime :");
-				scanf("%d", &runTime);
-				arg = runTime;
+				scanf("%d", &runTime);//런타임이상을 뽑기위해 원하는 최소 런타임 입력 받음  
+				arg = &runTime;//arg를 runTime로 두어서 repFunc인 mv_printrunTime함수에서 활용하게 된다  
+				repFunc = mv_printRunTime;//repFunc인  mv_printRunTim함수  
+				printf("   - totally %d movies are listed!\n",list_repeatFunc(repFunc,arg,list));
 				break;
 				
 			case 4: //print movies with high score
-				repFunc = mv_printScore;
 				printf("lowest score :");
-				scanf("%f",&score);
-				arg = &score;
+				scanf("%f",&score);//원하는 최소 score입력 받음  
+				arg = &score;//arg를 score값으로 두어서 repFunc인  mv_printScore함수에서 활용하게 된다.  
+				repFunc = mv_printScore;
+				printf("   - totally %d movies are listed!\n",list_repeatFunc(repFunc,arg,list));
 				break;
 				
 			case 5:
 				printf("\n\nBye!\n\n");
-				exit_flag = 1;
+				exit_flag = 1;//5번을 선택했을때 while문을 끝낸다. 
 				break;
 				
-			default:
-				printf("wrong command! input again\n");
+			default://틀린걸 입력했을때 다시 입력받게 한다. 
+				printf("wrong command! input again\n"); 
 				break;
 		}
-		printf("   - totally %d movies are listed!\n",list_repeatFunc(repFunc,arg,list));
 		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
 		//2.3 print number of movies
 	}
