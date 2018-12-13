@@ -11,7 +11,7 @@ typedef struct movInfo {
 	char madeIn[10];
 } movInfo_t;
 
-void* mv_genMvInfo(char* name, float score, int runTime, char* country)
+void* mv_genMvInfo(char* name, float score, int runTime, char* country) //구조체의 크기를 지정해주고 그 자료들을 공간에 저장해준다   
 {
 	movInfo_t* mvPtr;//movInfo란 구조체의 mvPtr이란 변수명  
 	//allocate memory and set the member variables
@@ -29,7 +29,7 @@ void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 
 void printMv(void* obj)//해당 노드의 영화정보를 출력해주는 함수  
 {
-	movInfo_t* mvPtr = (movInfo_t*)obj;//변수 obj를 구조체형 변수 mvPtr로 저장  
+	movInfo_t* mvPtr = (movInfo_t*)obj;//변수 obj를 구조체형 변수 mvPtr로 저장하여 구조체 변수 mvPtr로 사용   
 	if (mvPtr == NULL) //구조체 속 NULL이면  
 	{
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");

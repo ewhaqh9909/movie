@@ -33,18 +33,15 @@ int main(int argc, char *argv[]) {
 
 	//1.3 read each movie data from the file and add it to the linked list
 	
-	while (!feof(fp)/* read name, country, runtime and score*/ )
-	{
-		fscanf(fp,"%s %s %d %f",name,country,&runTime,&score);//문자열로 읽어준다. 
+	while (fscanf(fp,"%s %s %d %f",name,country,&runTime,&score)!=EOF)//문자열로 읽어준다. 그 파일의 끝까지 읽게 된다. /* read name, country, runtime and score*/ )
+	{	
 		mvInfo=mv_genMvInfo(name, score, runTime, country);//mv_genMvInfo를 MvInfo으로 저장... 
-		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);//list에 mvInfo를 연결해준다. 
-        printf("%s %s %d %f\n",name,country,runTime,score);
-        
+		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 	}
 
 	fclose(fp);//1.4 FILE close
-	printf("    -totally %d movies are listed!\n",list_len(list));//파일속 영화정보 개수...list_len은 linked_list에 있는 함수로 list안의 노드를 세준다. 
+	printf("Read done! %d items are read\n",list_len(list));//파일속 영화정보 개수...list_len은 linked_list에 있는 함수로 list안의 노드를 세준다. 
 	//2. program start
 	
 	while(exit_flag == 0)
@@ -69,8 +66,8 @@ int main(int argc, char *argv[]) {
 				arg = NULL;//repFunc의 인수로 쓰이는 arg를 NULL로 두어 별 다른 조건없이 영화전부를 전부 출력하기위한 설정이다  
 				printf("   - totally %d movies are listed!\n",list_repeatFunc(repFunc,arg,list));
 				/*list_repeatFunc()을 이용하여 repFunc는 결국 mv_print~~함수인데
-				이 함수를 while문 속에서 각 노드의 끝까지 보내서 조건에 따라 출력하게 되는  
-				이때 각 조건이 맞을때 반환값들을  더하게 된다 그럼 결국 출력한 영화의 개수를 셀 수 있다.*/ 
+				이 함수를 while문 속에서 각 노드의 끝까지 보내서 조건에 따라 출력하게 되는데 
+				이때 각 조건이 맞을때 mv_print~~함수의 반환값들을  더하게 된다 그럼 결국 출력한 영화의 개수를 셀 수 있다.*/ 
 				break;
 				
 			case 2: //print movies of specific country
@@ -102,7 +99,7 @@ int main(int argc, char *argv[]) {
 				exit_flag = 1;//5번을 선택했을때 while문을 끝낸다. 
 				break;
 				
-			default://틀린걸 입력했을때 다시 입력받게 한다. 
+			default://틀린걸 입력했을때 다시 입력받게 된다. 
 				printf("wrong command! input again\n"); 
 				break;
 		}
