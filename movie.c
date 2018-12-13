@@ -29,7 +29,7 @@ void* mv_genMvInfo(char* name, float score, int runTime, char* country) //구조체
 
 void printMv(void* obj)//해당 노드의 영화정보를 출력해주는 함수  
 {
-	movInfo_t* mvPtr = (movInfo_t*)obj;//변수 obj를 구조체형 변수 mvPtr로 저장하여 구조체 변수 mvPtr로 사용   
+	movInfo_t* mvPtr = (movInfo_t*)obj;//변수 obj를 구조체형 변수 mvPtr로 저장하여 구조체 변수 mvPtr처럼 사용   
 	if (mvPtr == NULL) //구조체 속 NULL이면  
 	{
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
@@ -49,7 +49,7 @@ int mv_printAll(void* obj, void* arg)//영화정보를 전체 출력하기 위한 함수 obj는 
 
 int mv_printScore(void* obj, void* arg)//조건에 맞는 score의 영화를 출력하게 하는 함수로  arg는 repFunc속 매개변수로 조건을 위한 변수 이기도 하다   
 {
-	movInfo_t* mvPtr = (movInfo_t*)obj;
+	movInfo_t* mvPtr = (movInfo_t*)obj;//변수 obj를 구조체형 변수 mvPtr로 저장하여 구조체 변수 mvPtr처럼 사용   
 	if ((mvPtr->score) >= *(float*)arg ) //arg가 void형이므로 자료형을 지정하기 위해서 *(float*)arg형으로 타입을 전환해준다 그리고 위에서 할당되었던 구조체의 score와 비교한다  
 	{
 		printMv(obj);//obj는 printMv를 위한 매개변수로 해당 노드의 영화를 출력한다  
@@ -60,7 +60,7 @@ int mv_printScore(void* obj, void* arg)//조건에 맞는 score의 영화를 출력하게 하�
 
 int mv_printRunTime(void* obj, void* arg)
 {
-	movInfo_t* mvPtr = (movInfo_t*)obj;
+	movInfo_t* mvPtr = (movInfo_t*)obj;//변수 obj를 구조체형 변수 mvPtr로 저장하여 구조체 변수 mvPtr처럼 사용   
 	if ( (mvPtr->runTime) >= *(int*)arg)  //arg가 void형이므로 자료형을 지정하기 위해서 *(int*)arg형으로 타입을 전환해준다 그리고 위에서 할당되었던 구조체의 runTime와 비교한다 
 	{
 		printMv(obj);//obj는 printMv를 위한 매개변수로 해당 노드의 영화를 출력한다  
